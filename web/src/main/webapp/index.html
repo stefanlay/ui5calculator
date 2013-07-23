@@ -1,0 +1,24 @@
+<!DOCTYPE	HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<script src="resources/sap-ui-core.js" id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.ui.commons" data-sap-ui-theme="sap_ux">
+		</script>
+		<!--	add	sap.ui.table,sap.ui.ux3	and/or	other	libraries	to	'data-sap-ui-libs'	if	required	-->
+
+		<script>
+			sap.ui.localResources("ui5calculator");
+			var view = sap.ui.view({
+				id : "idCalculator1",
+				viewName : "ui5calculator.Calculator",
+				type : sap.ui.core.mvc.ViewType.JS
+			});
+			view.placeAt("content");
+		</script>
+	</head>
+	<body class="sapUiBody">
+		<div id="content"></div>
+	</body>
+</html>
