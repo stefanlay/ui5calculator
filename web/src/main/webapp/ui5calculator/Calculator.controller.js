@@ -1,5 +1,8 @@
 sap.ui.controller("ui5calculator.Calculator", {
 
+	operand : undefined,
+	startNext : true,
+
 	/**
 	 * Called when a controller is instantiated and its View controls (if
 	 * available) are already created. Can be used to modify the View before it
@@ -10,6 +13,7 @@ sap.ui.controller("ui5calculator.Calculator", {
 		this.model = new sap.ui.model.json.JSONModel({
 			display : 0
 		});
+		this.startNext = true;
 		sap.ui.getCore().setModel(this.model);
 	},
 
@@ -36,10 +40,24 @@ sap.ui.controller("ui5calculator.Calculator", {
 	// onExit: function() {
 	//
 	// },
-
 	setDisplayValue : function(value) {
 		value = parseInt("" + value);
 		this.model.setProperty("/display", value);
+	},
+
+	handleAsDigit : function(button) {
+		var display = this.model.getProperty("/display");
+		if (display == 0) {
+			this.setDisplayValue(button);
+			this.startNext = false;
+		} else {
+			if (this.startNext) {
+				display = button;
+				this.startNext = false;
+			} else
+				display = "" + display + button;
+			this.setDisplayValue(display);
+		}
 	},
 
 	buttonPressed : function(button) {
@@ -48,13 +66,21 @@ sap.ui.controller("ui5calculator.Calculator", {
 			return;
 		}
 
-		var display = this.model.getProperty("/display");
-		if (display == 0) {
-			this.setDisplayValue(button);
-		} else {
-			display = "" + display + button;
-			this.setDisplayValue(display);
+		if ('+' == button) {
+			this.operand = this.model.getProperty("/display");
+			this.startNext = true;
+			return;
 		}
+
+		if ('=' == button) {
+			if (this.operand) {
+				var sum = this.model.getProperty("/display") + this.operand;
+				this.setDisplayValue(sum);
+			}
+			return;
+		}
+
+		this.handleAsDigit(button);
 	}
 
 });

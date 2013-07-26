@@ -12,7 +12,7 @@ sap.ui
 							var oDisplay = new sap.ui.commons.TextView(
 									"display", {
 										text : '{/display}',
-										textAlign: sap.ui.core.TextAlign.Right
+										textAlign : sap.ui.core.TextAlign.Right
 									});
 
 							var oDisplayCell = new sap.ui.commons.layout.MatrixLayoutCell(
@@ -39,7 +39,8 @@ sap.ui
 										id : rowId,
 										height : '25px'
 									});
-							function createButtonCell(id, label, colSpan, enabled) {
+							function createButtonCell(id, label, colSpan,
+									enabled) {
 								var oCell = new sap.ui.commons.layout.MatrixLayoutCell(
 										{
 											id : id,
@@ -101,7 +102,7 @@ sap.ui
 						oLayout.addRow(createButtonRow('Row-4', [ '1', '2',
 								'3', '!-' ]));
 						oLayout.addRow(createButtonRow('Row-5', [ '0', '0',
-								'!,', '!+' ]));
+								'!,', '+' ]));
 						oLayout.addRow(createButtonRow('Row-6', [ '=', '=',
 								'=', '=' ]));
 
