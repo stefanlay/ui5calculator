@@ -3,20 +3,21 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.sap.ase.ui5calculator</groupId>
-	<version>1.0.0-SNAPSHOT</version>
-	<url>http://maven.apache.org</url>
+	<parent>
+		<groupId>com.sap.ase.ui5calculator</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath>
+	</parent>
 
-	<artifactId>com.sap.ase.ui5calculator.web</artifactId>
+	<artifactId>web</artifactId>
 	<packaging>war</packaging>
 	<name>UI5 Calculator Web Module</name>
-	
+
 	<properties>
 		<js.unit.tests.dependencies.path>${project.build.directory}/js-unit-tests-dependencies</js.unit.tests.dependencies.path>
 		<js.unit.tests.runtime.path>${project.build.directory}/phantomjs</js.unit.tests.runtime.path>
 		<version.phantomjs>1.9.0</version.phantomjs>
-		<sap.cloud.ui5.version>1.10.3</sap.cloud.ui5.version>
-		<eclipse.path>C:/eclipse/juno_java_EE_SR2/eclipse</eclipse.path>
 	</properties>
 
 	<dependencies>
@@ -44,7 +45,8 @@
 			<version>${sap.cloud.ui5.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-<!-- 	advanced UI5 libs	
+		<!-- advanced UI5 libs -->
+		<!--
 		<dependency>
 			<groupId>com.sap.ui5.makit</groupId>
 			<artifactId>com.sap.ui5.makit</artifactId>
@@ -115,7 +117,7 @@
 			<scope>system</scope>
 			<systemPath>${eclipse.path}/plugins/com.sap.ui5.viz_${sap.cloud.ui5.version}.jar</systemPath>
 		</dependency>
- -->		
+		-->
 	</dependencies>
 
 	<build>
