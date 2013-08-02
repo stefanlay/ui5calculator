@@ -9,7 +9,7 @@
   $cssDependencies$
   $javascriptDependencies$
   <script type="text/javascript" src="target/js-unit-tests-dependencies/META-INF/resources/sap-ui-core.js"
-   id="sap-ui-bootstrap">
+   id="sap-ui-bootstrap" data-sap-ui-libs="sap.ui.commons">
   </script>
   <script type="text/javascript">
     jQuery.sap.registerModulePath("ui5calculator", "/src/main/webapp/ui5calculator");

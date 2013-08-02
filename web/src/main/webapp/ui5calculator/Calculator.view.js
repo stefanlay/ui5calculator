@@ -8,6 +8,7 @@ sap.ui
 					},
 
 					createContent : function(oController) {
+						var that = this; // allow private functions to access this
 						function createDisplayRow() {
 							var oDisplay = new sap.ui.commons.TextView(
 									"display", {
@@ -59,27 +60,7 @@ sap.ui
 								return oCell;
 							}
 
-							var length = labels.length;
-							var colSpan = 1;
-							for ( var i = 0; i < length; i++) {
-								var label = labels[i];
-								var next = i + 1;
-								if ((next < length) && label == labels[next]) {
-									colSpan++;
-								} else {
-									var enabled;
-									if (label.substring(0, 1) === '!') {
-										enabled = false;
-										label = label.substring(1);
-									} else {
-										enabled = true;
-									}
-									var oCell = createButtonCell(rowId + '_'
-											+ i, label, colSpan, enabled);
-									oRow.addCell(oCell);
-									colSpan = 1;
-								}
-							}
+							that.fillButtonRow(oRow, rowId, labels, createButtonCell);
 
 							return oRow;
 						}
@@ -114,6 +95,29 @@ sap.ui
 							content : oLayout
 						});
 						return oPanel;
-					}
+					},
 
+					fillButtonRow : function(oRow, rowId, labels, createButtonCell) {
+						var length = labels.length;
+						var colSpan = 1;
+						for ( var i = 0; i < length; i++) {
+							var label = labels[i];
+							var next = i + 1;
+							if ((next < length) && label == labels[next]) {
+								colSpan++;
+							} else {
+								var enabled;
+								if (label.substring(0, 1) === '!') {
+									enabled = false;
+									label = label.substring(1);
+								} else {
+									enabled = true;
+								}
+								var oCell = createButtonCell(rowId + '_'
+										+ i, label, colSpan, enabled);
+								oRow.addCell(oCell);
+								colSpan = 1;
+							}
+						}
+					}
 				});
